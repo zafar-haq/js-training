@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <p id="output"></p>
+        <script>
+            class member{
+                constructor(relation, dob, next=null){
+                    this.relation = relation;
+                    this.dob = dob;
+                    this.next = next;
+                    this.returnDetails = function(){
+                        return "Relation: " + this.relation + ", DOB: " + this.dob.toUTCString();
+                    }
+                }
+            }
+            class familyTree{
+                constructor(head=null){
+                    this.head = head;
+                }
+                printTree = function(){
+                    let iterator = this.head;
+                    let response="";
+                    while(iterator != null){
+                        response += iterator.returnDetails() + "<br>";
+                        iterator = iterator.next;
+                    }
+                    return response;
+                }
+            }
+
+            const myFamily = new familyTree();
+            const father = new member('father', new Date('1970-01-01'));
+            myFamily.head = father;
+
+            const son = new member('son', new Date('2000-01-01'));
+            father.next = son;
+
+            const grandson = new member('grandson', new Date('2021-01-01'));
+            son.next = grandson;
+            document.getElementById('output').innerHTML = myFamily.printTree();
+
+        </script>
+    </body>
+</html>
