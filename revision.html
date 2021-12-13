@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>revision</title>
+    </head>
+    <body>
+        <p id='example'></p>
+        <p id="for-in"></p>
+        <p id="for-of"></p>
+        <p id="object"></p>
+        <p id="constructor"></p>
+
+        <script>
+            function for_in_loop_practice(arr){  //only loops through indexes or keys of arrays and objects
+                let p = document.getElementById('for-in');
+                for(x in arr){
+                    p.innerHTML += ', '+ arr[x];
+                }
+            }
+
+            function for_of_loop_practice(arr){ //iterates through values of arrays only
+                let p = document.getElementById('for-of');
+                for(x of arr){
+                    p.innerHTML += ', '+ x;
+                }
+            }
+            let fruits = ['mango', 'apple', 'banana'];
+            let persons = [{first_name:'zafar', last_name:'haq'}, {first_name:'ahmed', last_name:'iqbal'}];
+            let person_detail = {name:'zafar', job:'engineer'};
+            for_in_loop_practice(fruits);
+            for_in_loop_practice(persons);
+            for_in_loop_practice(person_detail);
+
+            for_of_loop_practice(fruits);
+            for_of_loop_practice(persons);
+            // for_of_loop_practice(person_detail);
+
+            { //adding property in object
+                person_detail.nationality = 'Pakistani';
+                document.getElementById('object').innerHTML += JSON.stringify(person_detail);
+            }
+
+            function PersionalDetails (name, job){
+                this.name = name;
+                this.job = job;
+            }
+
+            person_detail = new PersionalDetails('zafar', 'enginner');
+            {//adding properties to object that are initialized by constuctors
+                person_detail.nationality = 'Pakistani';
+                document.getElementById('constructor').innerHTML += JSON.stringify(person_detail);
+            }
+
+            { //setting a cookie
+                const d = new Date();
+                d.setTime(d.getTime() + (1*24*60*60*1000));
+                let expires = "expires="+ d.toUTCString();
+                document.cookie = 'username' + "=" + 'zafar' + ";" + expires + ";path=/";
+                console.log(decodeURIComponent(document.cookie));
+            }
+
+            //prototype and valueOf
+            Boolean.prototype.myColor = function() {
+                if (this.valueOf() == true) {
+                    return "green";
+                } else {
+                    return "red";
+                }
+            };
+            let a = true;
+            let color = a.myColor();
+            console.log(color);
+
+            //slice vs substr
+            let str = "This is Invozone.";
+            console.log(str.slice(4, 8)); // start, end
+            console.log(str.substr(4, 8)); //start, length
+            console.log(str.substring(7, 3)); //start, end.. but when end < start they are swapped.. also negative arguements are considered 0.
+
+            //array map
+            const numbers = [65, 44, 12, 4];
+            const newArr = numbers.map(myFunction);
+            console.log(newArr);
+            function myFunction(x){
+                return x*10;
+            }
+            //reduce
+            console.log(numbers.reduce(myFunc));
+            function myFunc(total, num) {
+                return total/num;
+            }
+
+            //filter
+            const ages = [32, 33, 16, 40];
+            console.log(ages.filter(checkAdult));
+            function checkAdult(age) {
+            return age >= 18;
+            }
+
+
+        </script>
+    </body>
+</html>
