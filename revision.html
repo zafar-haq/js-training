@@ -9,6 +9,8 @@
         <p id="for-of"></p>
         <p id="object"></p>
         <p id="constructor"></p>
+        <p id="date"></p>
+        <p id="time"></p>
 
         <script>
             function for_in_loop_practice(arr){  //only loops through indexes or keys of arrays and objects
@@ -97,7 +99,15 @@
             return age >= 18;
             }
 
-
+            let date = new Date;
+            document.getElementById('date').innerHTML = date.getMilliseconds(); //ms 0-999
+            document.getElementById('time').innerHTML = date.getTime(); //ms from 1970
+            console.log(date.getTimezoneOffset()); //difference in UTC and local time in minutes
+            console.log(Date.parse('2021-01-01'));
+            console.log(date.toString()); //full date + time
+            console.log(date.toDateString()); //date only
+            console.log(date.toTimeString()); //time only
+            console.log(date.valueOf()); //ms
         </script>
     </body>
 </html>
